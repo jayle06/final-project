@@ -7,5 +7,6 @@ import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap";
 import VueAgile from "vue-agile";
 import "@/assets/styles/base.scss";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 createApp(App).use(store).use(router).use(VueAgile).mount("#app");
