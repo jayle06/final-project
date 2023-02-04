@@ -90,6 +90,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.product-images {
+  &::v-deep {
+    .agile {
+      &__nav-button {
+        top: 25px;
+        &--prev {
+          left: -25px;
+        }
+
+        &--next {
+          right: -25px;
+        }
+      }
+    }
+  }
+}
+
 .slide {
   align-items: center;
   box-sizing: border-box;
