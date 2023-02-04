@@ -1,5 +1,5 @@
 <template>
-  <carousel>
+  <carousel :options="options1">
     <div v-for="(image, index) in banners" :key="index">
       <img class="slide" :src="image.src" />
     </div>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { VueAgile } from "vue-agile";
 
 export default {
@@ -27,12 +27,19 @@ export default {
     },
   },
   setup(props) {
+    const options1 = ref({
+      dots: true,
+      fade: false,
+      navButtons: true,
+    });
+
     const banners = computed(() =>
       props.images.length > 0 ? props.images : []
     );
 
     return {
       banners,
+      options1,
     };
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="product-images">
     <carousel
-      class="main-image"
+      class="product-images__main-image"
       ref="mainImage"
       :options="options1"
       :as-nav-for="asNavFor1"
@@ -11,7 +11,7 @@
       </div>
     </carousel>
     <carousel
-      class="thumbnails"
+      class="product-images__thumbnails"
       ref="thumbnails"
       :options="options2"
       :as-nav-for="asNavFor2"
@@ -90,20 +90,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-images {
-  max-width: 700px;
-  padding: 80px;
-}
-
-.main-image {
-  margin-bottom: 30px;
-}
-
-.thumbnails {
-  margin: 0 -5px;
-  width: calc(100% + 10px);
-}
-
 .slide {
   align-items: center;
   box-sizing: border-box;

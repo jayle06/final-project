@@ -1,0 +1,11 @@
+.product-images {
+  max-width: 700px;
+  padding: 80px;
+  &__main-image {
+    margin-bottom: 30px;
+  }
+  &__thumbnails {
+    margin: 0 -5px;
+    width: calc(100% + 10px);
+  }
+}
