@@ -1,0 +1,100 @@
+.header {
+  color: #777;
+}
+
+.header-top {
+  font-size: 14px;
+  background-color: #f5f6f9;
+  a {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      color: #39f;
+    }
+  }
+
+  &__right {
+    margin-left: auto;
+    text-transform: capitalize;
+    ul {
+      list-style: none;
+    }
+  }
+}
+
+.header-middle {
+  height: 88px;
+
+  &__logo {
+    &:hover {
+      cursor: pointer;
+    }
+    img {
+      width: 50px;
+    }
+  }
+
+  &__search {
+    border-color: #ccc;
+    width: 500px;
+    button {
+      border-color: #ccc;
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+      background-color: transparent;
+      color: #333;
+      border-right: none;
+      &:hover, &:active {
+        color: #39f !important;
+        border-color: #ccc !important;
+        background-color: transparent !important;
+      }
+    }
+    input {
+      height: 44px;
+      padding: 1rem 2.4rem 1rem 0.5rem;
+      border-radius: 30px;
+      border-left: none;
+      &:focus {
+        border-color: #ccc;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__cart {
+    font-size: 24px;
+    color: #333;
+    &:hover {
+      cursor: pointer;
+      color: #39f;
+    }
+    &-badge {
+      top: 0;
+      right: -17px;
+      width: 17px;
+      border-radius: 50%;
+      font-size: 12px;
+      background-color: #39f;
+      color: #fff;
+    }
+  }
+}
+
+.header-bottom {
+  &__right {
+    button {
+      width: 275px;
+      height: 54px;
+      padding: 10px 20px;
+      border-radius: 0;
+      background-color: #f8f8f8;
+      color: #333333;
+      border: none;
+      &:hover, &:active {
+        color: #fff !important;
+        background-color: #39f !important;
+      }
+    }
+  }
+}

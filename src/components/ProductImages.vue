@@ -96,11 +96,11 @@ export default {
       &__nav-button {
         top: 25px;
         &--prev {
-          left: -25px;
+          left: -20px;
         }
 
         &--next {
-          right: -25px;
+          right: -20px;
         }
       }
     }
