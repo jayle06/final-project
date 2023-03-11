@@ -30,7 +30,7 @@
       cursor: pointer;
     }
     img {
-      width: 50px;
+      width: 105px;
     }
   }
 
@@ -70,13 +70,23 @@
       color: #39f;
     }
     &-badge {
-      top: 0;
-      right: -17px;
+      top: -2px;
+      right: -5px;
       width: 17px;
       border-radius: 50%;
       font-size: 12px;
       background-color: #39f;
       color: #fff;
+    }
+    &-mini-cart {
+      right: 0;
+      opacity: 0;
+      z-index: -1;
+      transition: ease-in all 0.3s;
+      &--active {
+        opacity: 1;
+        z-index: 99;
+      }
     }
   }
 }

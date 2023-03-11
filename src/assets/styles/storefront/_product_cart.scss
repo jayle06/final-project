@@ -1,0 +1,11 @@
+.product-cart {
+  img {
+    width: 64px;
+    height: 64px;
+  }
+  &__info {
+    &-option {
+      opacity: 0.46;
+    }
+  }
+}

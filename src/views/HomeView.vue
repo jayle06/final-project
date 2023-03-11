@@ -4,18 +4,20 @@
     <HelloWorld :images="defaultBanner" />
     <ProductImages :images="slides" />
     <ProductsCarousel :products="products" />
-    <Editor />
+    <!--    <Editor />-->
+    <Footer />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { reactive, ref } from "vue";
-import HeaderTop from "@/modules/storefront/Header";
+import HeaderTop from "@/modules/storefront/components/Header";
 import HelloWorld from "@/components/Carousel";
-import ProductImages from "@/components/ProductImages";
+import ProductImages from "@/modules/storefront/components/ProductImages";
 import ProductsCarousel from "@/components/ProductsCarousel";
-import Editor from "@/components/TinyEditor";
+// import Editor from "@/components/TinyEditor";
+import Footer from "@/modules/storefront/components/Footer";
 
 export default {
   name: "HomeView",
@@ -24,21 +26,18 @@ export default {
     HelloWorld,
     ProductImages,
     ProductsCarousel,
-    Editor,
+    // Editor,
+    Footer,
   },
   setup() {
     const defaultBanner = reactive([
       {
         id: 1,
-        src: "https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+        src: "https://www.linkpicture.com/q/slide-2.png",
       },
       {
         id: 2,
-        src: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
-      },
-      {
-        id: 3,
-        src: "https://images.unsplash.com/photo-1529815481058-55e5b656f6d6?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+        src: "https://www.linkpicture.com/q/slide-1.png",
       },
     ]);
     const slides = ref([

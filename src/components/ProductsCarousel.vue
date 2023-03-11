@@ -24,7 +24,7 @@
 
 <script>
 import { VueAgile } from "vue-agile";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "@/modules/storefront/components/ProductCard";
 import { computed } from "vue";
 export default {
   name: "ProductsCarousel",

@@ -33,12 +33,29 @@
             placeholder="Search product..."
           />
         </div>
-        <div class="header-middle__cart">
-          <i class="bi bi-cart2 position-absolute"></i>
+        <div class="header-middle__cart position-relative">
           <div
-            class="header-middle__cart-badge position-relative d-flex justify-content-center"
+            class="position-relative"
+            @mouseenter="isShowMiniCart = true"
+            @mouseleave="isShowMiniCart = false"
           >
-            <span>1</span>
+            <i class="bi bi-cart2"></i>
+            <div
+              class="d-flex justify-content-center position-absolute header-middle__cart-badge"
+            >
+              <span>1</span>
+            </div>
+          </div>
+          <div
+            class="position-absolute header-middle__cart-mini-cart"
+            :class="{ 'header-middle__cart-mini-cart--active': isShowMiniCart }"
+            @mouseenter="isShowMiniCart = true"
+            @mouseleave="isShowMiniCart = false"
+          >
+            <mini-cart
+              :is-show-mini-cart="isShowMiniCart"
+              @close="closeMiniCart"
+            />
           </div>
         </div>
       </div>
@@ -87,15 +104,25 @@
 
 <script>
 import { ref } from "vue";
+import MiniCart from "@/modules/storefront/components/MiniCart";
 
 export default {
-  name: "HeaderTop",
-  components: {},
+  name: "MainHeader",
+  components: {
+    MiniCart,
+  },
   setup() {
     const isShowCat = ref(false);
+    const isShowMiniCart = ref(false);
+
+    const closeMiniCart = () => {
+      isShowMiniCart.value = false;
+    };
 
     return {
       isShowCat,
+      isShowMiniCart,
+      closeMiniCart,
     };
   },
 };

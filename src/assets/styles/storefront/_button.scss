@@ -1,0 +1,20 @@
+.btn-primary {
+  border-radius: 0;
+  color: #fff;
+  background-color: #39f;
+  border-color: #39f;
+  box-shadow: none;
+}
+
+.btn-outline-primary-2 {
+  border-radius: 0;
+  color: #39f;
+  background-color: transparent;
+  background-image: none;
+  border-color: #39f;
+  box-shadow: none;
+  &:hover {
+    color: #fff;
+    background-color: #39f;
+  }
+}
