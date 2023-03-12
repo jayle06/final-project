@@ -33,6 +33,7 @@
 
 <script>
 import ProductCart from "@/modules/storefront/components/ProductCart";
+
 export default {
   name: "MiniCart",
   components: {

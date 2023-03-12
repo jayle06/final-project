@@ -92,19 +92,5 @@
 }
 
 .header-bottom {
-  &__right {
-    button {
-      width: 275px;
-      height: 54px;
-      padding: 10px 20px;
-      border-radius: 0;
-      background-color: #f8f8f8;
-      color: #333333;
-      border: none;
-      &:hover, &:active {
-        color: #fff !important;
-        background-color: #39f !important;
-      }
-    }
-  }
+
 }

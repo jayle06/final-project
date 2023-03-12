@@ -2,7 +2,7 @@
   <div class="product-carousel">
     <carousel class="mb-lg-4" :options="options">
       <div
-        class="slide"
+        class="slide me-5"
         v-for="(product, index) in products"
         :key="index"
         :class="`slide--${index}`"
@@ -44,6 +44,26 @@ export default {
         dots: false,
         navButtons: true,
         slidesToShow: 5,
+        responsive: [
+          {
+            breakpoint: 400,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+          {
+            breakpoint: 900,
+            settings: {
+              slidesToShow: 4,
+            },
+          },
+          {
+            breakpoint: 1100,
+            settings: {
+              slidesToShow: 7,
+            },
+          },
+        ],
       };
     });
 
@@ -54,10 +74,18 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .product-carousel {
-  max-width: 100%;
+  width: 100%;
+  &::v-deep {
+    .agile {
+      &__list {
+        padding: 30px 0 30px 30px;
+      }
+    }
+  }
 }
+
 .slide {
   height: auto;
 }
