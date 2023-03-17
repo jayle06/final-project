@@ -3,7 +3,7 @@
     <div class="container">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <router-link to="/">home</router-link>
+          <a href="#" @click="goToPage('home')">home</a>
         </li>
         <template v-if="pages">
           <li
@@ -12,9 +12,9 @@
             class="breadcrumb-item"
             aria-current="page"
           >
-            <router-link :to="page">
+            <a href="#" @click="goToPage(page)">
               {{ page }}
-            </router-link>
+            </a>
           </li>
         </template>
         <li v-if="page" class="breadcrumb-item active" aria-current="page">
@@ -27,6 +27,7 @@
 
 <script>
 import { ref, toRef } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   name: "BreadCrumb",
@@ -40,11 +41,16 @@ export default {
     },
   },
   setup(props) {
+    const router = useRouter();
     const pages = toRef(props, "pages");
     const lastItem = ref(pages.value.slice(-1));
+    const goToPage = (page) => {
+      router.push({ name: page });
+    };
 
     return {
       lastItem,
+      goToPage,
     };
   },
 };

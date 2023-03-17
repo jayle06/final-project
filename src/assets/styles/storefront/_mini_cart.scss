@@ -1,5 +1,5 @@
 .mini-cart {
-  width: 300px;
+  width: 350px;
   background-color: #fff;
   border: 1px solid #e1e1e1;
   color: #777;
@@ -15,6 +15,11 @@
   }
 
   &__wrapper {
+    &-item {
+      margin-top: 32px;
+      max-height: 350px;
+      overflow: auto;
+    }
     &-summary {
       border-top: 1px solid #e1e1e1;
       &-price {

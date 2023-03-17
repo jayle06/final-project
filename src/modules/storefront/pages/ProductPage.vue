@@ -1,122 +1,62 @@
 <template>
-  <div class="py-4">
-    <BreadCrumb
-      :pages="['products']"
-      :page="`MacBook Pro M2 8GB + 256GB 13.3-inch (Space Gray)`"
-    />
-    <div class="container d-flex flex-column product-page">
-      <div class="d-flex">
-        <div class="product-page__media">
-          <ProductImages :images="slides" />
-        </div>
-        <div class="ms-4 product-page__info">
-          <div class="mb-4">
-            <h3>MacBook Pro M2 8GB + 256GB 13.3-inch (Space Gray)</h3>
+  <div class="py-4 product-page">
+    <div class="container">
+      <BreadCrumb :pages="['products']" :page="product.title" />
+      <div class="d-flex flex-column">
+        <div class="d-flex">
+          <div class="w-100 product-page__media">
+            <ProductImages :images="slides" />
           </div>
-          <div class="d-flex align-items-center mb-4 product-page__info-color">
-            <span class="me-3">Color:</span>
-            <div class="d-flex widget-color">
-              <span class="me-3">White</span>
-              <span class="me-3">Grey</span>
+          <div class="ms-4 w-100 product-page__info">
+            <div class="mb-4">
+              <h3>{{ product.title }}</h3>
             </div>
+            <div
+              class="d-flex align-items-center mb-4 product-page__info-color"
+            >
+              <span class="me-3">Color:</span>
+              <div class="d-flex widget-color">
+                <span class="me-3">White</span>
+                <span class="me-3">Grey</span>
+              </div>
+            </div>
+            <div class="mb-4 product-page__info-price">
+              ${{ product.price }}
+            </div>
+            <div
+              class="d-flex align-items-center mb-4 product-page__info-quantity"
+            >
+              <span class="me-3">Quantity:</span>
+              <ProductQuantity
+                v-model.number="quantity"
+                class="flex"
+                :min="0"
+                @input="changeQuantity(...arguments)"
+                @blur="changeQuantity(...arguments)"
+                style="width: 120px"
+              />
+            </div>
+            <button class="px-3 py-2 w-50 btn btn-primary text-uppercase">
+              Add to cart
+            </button>
           </div>
-          <div class="mb-4 product-page__info-price">$1,500.00</div>
-          <div
-            class="d-flex align-items-center mb-4 product-page__info-quantity"
-          >
-            <span class="me-3">Quantity:</span>
-            <ProductQuantity
-              v-model.number="quantity"
-              class="flex"
-              :min="0"
-              @input="changeQuantity(...arguments)"
-              @blur="changeQuantity(...arguments)"
-              style="width: 120px"
-            />
-          </div>
-          <button class="px-3 py-2 w-50 btn btn-primary">Add to cart</button>
         </div>
       </div>
-      <div>
-        <nav>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button
-              class="nav-link active"
-              id="nav-home-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-home"
-              type="button"
-              role="tab"
-              aria-controls="nav-home"
-              aria-selected="true"
-            >
-              Description
-            </button>
-            <button
-              class="nav-link"
-              id="nav-profile-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-profile"
-              type="button"
-              role="tab"
-              aria-controls="nav-profile"
-              aria-selected="false"
-            >
-              Additional information
-            </button>
-            <button
-              class="nav-link"
-              id="nav-contact-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-contact"
-              type="button"
-              role="tab"
-              aria-controls="nav-contact"
-              aria-selected="false"
-            >
-              Shipping & Returns
-            </button>
-          </div>
-        </nav>
-        <div class="tab-content" id="nav-tabContent">
-          <div
-            class="tab-pane fade show active"
-            id="nav-home"
-            role="tabpanel"
-            aria-labelledby="nav-home-tab"
-            tabindex="0"
-          >
-            ...
-          </div>
-          <div
-            class="tab-pane fade"
-            id="nav-profile"
-            role="tabpanel"
-            aria-labelledby="nav-profile-tab"
-            tabindex="0"
-          >
-            ...
-          </div>
-          <div
-            class="tab-pane fade"
-            id="nav-contact"
-            role="tabpanel"
-            aria-labelledby="nav-contact-tab"
-            tabindex="0"
-          >
-            ...
-          </div>
-        </div>
+
+      <div class="mt-5">
+        <h2 class="title text-center py-4">You May Also Like</h2>
+        <ProductsCarousel :products="productsRecommend" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, toRef } from "vue";
+import { reactive, ref } from "vue";
 import ProductImages from "@/modules/storefront/components/ProductImages";
 import ProductQuantity from "@/modules/storefront/components/ProductQuantity";
 import BreadCrumb from "@/modules/storefront/components/BreadCrumb";
+import ProductsCarousel from "@/modules/storefront/components/ProductsCarousel";
 import debounce from "@popperjs/core/lib/utils/debounce";
 
 export default {
@@ -125,6 +65,7 @@ export default {
     ProductImages,
     ProductQuantity,
     BreadCrumb,
+    ProductsCarousel,
   },
   props: {},
   emits: ["quantity"],
@@ -137,7 +78,81 @@ export default {
       "https://www.maccenter.vn/App_images/MacBookPro-M2-SpaceGray-E.jpg",
     ]);
 
-    const product = toRef(props, "product");
+    const productsRecommend = reactive([
+      {
+        id: 1,
+        handle: "product-1",
+        title: "Product A",
+        price: 999,
+        collection: "Phone",
+        description:
+          "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        images: {
+          main_image: "https://www.linkpicture.com/q/product-1.jpg",
+        },
+      },
+      {
+        id: 2,
+        handle: "product-2",
+        title: "Product A",
+        price: 999,
+        collection: "Phone",
+        description:
+          "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        images: {
+          main_image: "https://www.linkpicture.com/q/product-2_3.jpg",
+        },
+      },
+      {
+        id: 3,
+        handle: "product-3",
+        title: "Product A",
+        price: 999,
+        collection: "Phone",
+        description:
+          "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        images: {
+          main_image: "https://www.linkpicture.com/q/product-3_3.jpg",
+        },
+      },
+      {
+        id: 4,
+        handle: "product-4",
+        title: "Product A",
+        collection: "Phone",
+        price: 999,
+        description:
+          "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        images: {
+          main_image: "https://www.linkpicture.com/q/product-4_2.jpg",
+        },
+      },
+      {
+        id: 5,
+        handle: "product-5",
+        title: "Product A",
+        collection: "Phone",
+        price: 999,
+        description:
+          "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        images: {
+          main_image: "https://www.linkpicture.com/q/product-5_1.jpg",
+        },
+      },
+    ]);
+
+    const product = reactive({
+      id: 2,
+      handle: "product-2",
+      title: "Product A",
+      price: 999,
+      collection: "Phone",
+      description:
+        "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      images: {
+        main_image: "https://www.linkpicture.com/q/product-2_3.jpg",
+      },
+    });
     const quantity = ref(1);
 
     const changeQuantity = debounce(function () {
@@ -156,6 +171,8 @@ export default {
       slides,
       quantity,
       changeQuantity,
+      productsRecommend,
+      product,
     };
   },
 };

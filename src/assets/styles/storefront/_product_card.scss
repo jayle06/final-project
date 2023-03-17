@@ -22,6 +22,15 @@
       border-radius: 50%;
       font-size: 13px;
     }
+    &-action {
+      bottom: 0;
+      transition: all 0.35s ease;
+      button {
+        border-radius: 0;
+        background-color: #fff;
+        font-size: 12px;
+      }
+    }
   }
 
   &__body {
@@ -68,4 +77,43 @@
       line-height: 1.25;
     }
   }
+}
+
+.ratings-container {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 17px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.ratings {
+  position: relative;
+  color: #cccccc;
+}
+.ratings,
+.ratings-val {
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+.ratings:before,
+.ratings-val:before {
+  content: "\f318""\f318""\f318""\f318""\f318";
+}
+.ratings-val {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #fcb941;
+}
+.ratings-primary .ratings-val {
+  color: #39f;
+}
+.ratings-text {
+  color: #cccccc;
+  letter-spacing: -0.01em;
 }

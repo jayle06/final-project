@@ -1,0 +1,139 @@
+.summary {
+  padding: 2.5rem 3rem 3rem;
+  border: 1px dashed #d7d7d7;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  &__title {
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0;
+    border-bottom: 1px solid #cccccc;
+
+  }
+}
+
+.table.table-summary {
+  line-height: 1.43;
+  color: #666;
+  border: none;
+  margin-bottom: 0;
+}
+.table.table-summary a {
+  color: inherit;
+}
+.table.table-summary a:hover,
+.table.table-summary a:focus {
+  color: #39f;
+}
+.table.table-summary thead th,
+.table.table-summary .summary-subtotal td {
+  color: #333;
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+.table.table-summary thead th {
+  border-bottom: none;
+  padding: 0 0 0.3rem;
+}
+.table.table-summary tbody td {
+  padding: 0;
+  height: 70px;
+  border-bottom: 0.1rem solid #ebebeb;
+}
+.table.table-summary thead th,
+.table.table-summary tbody td {
+  vertical-align: middle;
+  border-top: none;
+}
+.table.table-summary thead th:last-child,
+.table.table-summary tbody td:last-child {
+  text-align: right;
+  min-width: 100px;
+}
+.table.table-summary .summary-total td {
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #39f;
+  border-bottom: none;
+}
+.accordion-summary {
+  margin-bottom: 3.2rem;
+}
+.accordion-summary .card {
+  color: #999;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.67;
+  border: none;
+  background-color: transparent;
+}
+.accordion-summary .card-title {
+  font-weight: 300;
+  font-size: 1.4rem;
+  color: #333;
+  letter-spacing: 0;
+}
+.accordion-summary .card-title a {
+  color: inherit;
+  padding: 0.7rem 0 0.7rem 3rem;
+}
+.accordion-summary .card-title a img {
+  margin-top: 1rem;
+}
+.accordion-summary .card-title a:hover,
+.accordion-summary .card-title a:focus {
+  color: inherit;
+}
+.accordion-summary .card-title a small {
+  font-size: 1.1rem;
+  color: #999;
+}
+.accordion-summary .card-title a:before {
+  content: "";
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 0.1rem solid #39f;
+  right: auto;
+  left: 0;
+  top: 0.7rem;
+  transform: translateY(0);
+  -ms-transform: translateY(0);
+}
+.accordion-summary .card-title a:after {
+  content: "";
+  display: block;
+  width: 0.6rem;
+  height: 0.6rem;
+  position: absolute;
+  left: 0.5rem;
+  top: 1.2rem;
+  border-radius: 50%;
+  background-color: #39f;
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s;
+}
+.accordion-summary .card-title a.collapsed:before {
+  border-color: #dadada;
+}
+.accordion-summary .card-title a.collapsed:after {
+  opacity: 0;
+  visibility: hidden;
+}
+.accordion-summary .card-body {
+  padding: 0.4rem 0 0.8rem 3rem;
+}
+.paypal-link {
+  cursor: pointer;
+  margin-top: 0.2rem;
+}
+.paypal-link:hover,
+.paypal-link:focus {
+  color: #39f !important;
+}
+@media screen and (min-width: 992px) {
+  .summary {
+    margin-top: 0;
+  }
+}

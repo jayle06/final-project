@@ -37,6 +37,27 @@
       </div>
     </div>
 
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="title py-4">Recommendation For You</h2>
+        <a href="#" class="title-link" @click="goToPage('products')">
+          <span class="me-2">View all products</span>
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="container my-4 d-flex flex-wrap justify-content-center">
+      <div
+        class="me-3 mb-4 products__card"
+        v-for="(product, index) in products"
+        :key="index"
+      >
+        <ProductCard :product="product" />
+      </div>
+    </div>
+
+    <div class="mb-4"></div>
+
     <div class="container bg-transparent">
       <div class="py-4 footer__top">
         <div class="row">
@@ -142,9 +163,11 @@
 <script>
 // @ is an alias to /src
 import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
 import SliderBanner from "@/components/Carousel";
 import ProductsCarousel from "@/modules/storefront/components/ProductsCarousel";
 import CategoryItems from "@/modules/storefront/components/ListCategory";
+import ProductCard from "@/modules/storefront/components/ProductCard";
 
 export default {
   name: "HomePage",
@@ -152,8 +175,10 @@ export default {
     SliderBanner,
     ProductsCarousel,
     CategoryItems,
+    ProductCard,
   },
   setup() {
+    const router = useRouter();
     const defaultBanner = reactive([
       {
         id: 1,
@@ -167,6 +192,10 @@ export default {
     const products = ref([
       {
         id: 1,
+        handle: "product-1",
+        title: "Product A",
+        price: 999,
+        collection: "Phone",
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
         images: {
@@ -175,6 +204,10 @@ export default {
       },
       {
         id: 2,
+        handle: "product-2",
+        title: "Product A",
+        price: 999,
+        collection: "Phone",
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
         images: {
@@ -183,6 +216,10 @@ export default {
       },
       {
         id: 3,
+        handle: "product-3",
+        title: "Product A",
+        price: 999,
+        collection: "Phone",
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
         images: {
@@ -191,6 +228,10 @@ export default {
       },
       {
         id: 4,
+        handle: "product-4",
+        title: "Product A",
+        collection: "Phone",
+        price: 999,
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
         images: {
@@ -199,6 +240,10 @@ export default {
       },
       {
         id: 5,
+        handle: "product-5",
+        title: "Product A",
+        collection: "Phone",
+        price: 999,
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
         images: {
@@ -206,9 +251,15 @@ export default {
         },
       },
     ]);
+
+    const goToPage = (page) => {
+      router.push({ name: page });
+    };
+
     return {
       defaultBanner,
       products,
+      goToPage,
     };
   },
 };

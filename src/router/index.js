@@ -24,6 +24,14 @@ const routes = [
       ),
   },
   {
+    path: "/collections/:handle",
+    name: "collection",
+    component: () =>
+      import(
+        /* webpackChunkName: "collection" */ "../modules/storefront/pages/CollectionPage.vue"
+      ),
+  },
+  {
     path: "/about",
     name: "about",
     component: () =>
@@ -48,11 +56,19 @@ const routes = [
       ),
   },
   {
-    path: "/product",
+    path: "/products/:handle",
     name: "product",
     component: () =>
       import(
         /* webpackChunkName: "product" */ "../modules/storefront/pages/ProductPage.vue"
+      ),
+  },
+  {
+    path: "/checkout",
+    name: "checkout",
+    component: () =>
+      import(
+        /* webpackChunkName: "checkout" */ "../modules/storefront/pages/CheckoutPage.vue"
       ),
   },
 ];

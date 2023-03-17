@@ -94,5 +94,10 @@
 }
 
 .header-bottom {
-
+  span {
+    cursor: pointer;
+    &:hover, &:active {
+      color: #39f;
+    }
+  }
 }

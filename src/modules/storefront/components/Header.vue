@@ -43,7 +43,7 @@
             <div
               class="d-flex justify-content-center position-absolute header-middle__cart-badge"
             >
-              <span>1</span>
+              <span>{{ cartItems.length }}</span>
             </div>
           </div>
           <div
@@ -51,6 +51,7 @@
             :class="{ 'header-middle__cart-mini-cart--active': isShowMiniCart }"
           >
             <mini-cart
+              :cart-items="cartItems"
               :is-show-mini-cart="isShowMiniCart"
               @close="closeMiniCart"
             />
@@ -61,18 +62,15 @@
     <div class="header-bottom">
       <div class="container">
         <div class="d-flex justify-content-center align-items-center py-3 ms-4">
-          <div class="me-4">
-            <router-link to="products"> Products </router-link>
-          </div>
-          <div class="me-4">
-            <router-link to="collections"> Collections </router-link>
-          </div>
-          <div class="me-4">
-            <router-link to="about"> About </router-link>
-          </div>
-          <div class="me-4">
-            <router-link to="contact"> Contact </router-link>
-          </div>
+          <template v-for="(menu, index) in menus" :key="index">
+            <div
+              v-if="menu.visible"
+              class="me-4"
+              @click="goToPage(menu.handle)"
+            >
+              <span class="text-capitalize"> {{ menu.title }} </span>
+            </div>
+          </template>
         </div>
       </div>
       <div class="border-bottom"></div>
@@ -88,9 +86,10 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import MiniCart from "@/modules/storefront/components/MiniCart";
 import Login from "@/modules/storefront/components/Login";
+import { useRouter } from "vue-router";
 
 export default {
   name: "MainHeader",
@@ -99,7 +98,52 @@ export default {
     Login,
   },
   setup() {
+    const router = useRouter();
     const isShowMiniCart = ref(false);
+    const menus = reactive([
+      {
+        id: 1,
+        title: "products",
+        handle: "products",
+        visible: true,
+      },
+      {
+        id: 2,
+        title: "collections",
+        handle: "collections",
+        visible: true,
+      },
+      {
+        id: 3,
+        title: "about",
+        handle: "about",
+        visible: true,
+      },
+      {
+        id: 4,
+        title: "contact",
+        handle: "contact",
+        visible: true,
+      },
+      {
+        id: 4,
+        title: "tracking",
+        handle: "tracking",
+        visible: false,
+      },
+    ]);
+    const cartItems = reactive([
+      {
+        id: 1,
+        title: "Product Sample",
+        image: "https://www.linkpicture.com/q/product-2_3.jpg",
+      },
+      {
+        id: 2,
+        title: "Product Sample 2",
+        image: "https://www.linkpicture.com/q/product-2_3.jpg",
+      },
+    ]);
 
     const showMiniCart = () => {
       isShowMiniCart.value = !isShowMiniCart.value;
@@ -109,10 +153,17 @@ export default {
       isShowMiniCart.value = false;
     };
 
+    const goToPage = (page) => {
+      router.push({ name: page });
+    };
+
     return {
+      menus,
+      cartItems,
       isShowMiniCart,
       closeMiniCart,
       showMiniCart,
+      goToPage,
     };
   },
 };

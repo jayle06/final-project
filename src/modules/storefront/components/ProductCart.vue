@@ -1,30 +1,45 @@
 <template>
   <div class="d-flex mb-3 product-cart">
-    <figure class="me-3">
-      <img
-        src="https://images.unsplash.com/photo-1453831362806-3d5577f014a4?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
-        alt="product image"
-      />
-    </figure>
-    <div class="d-flex flex-column product-card__info">
-      <span class="mb-1">product title</span>
-      <span class="mb-1 product-cart__info-option">product option</span>
+    <div class="me-3" :class="`product-cart__img-${settings.img_size}`">
+      <img :src="product.image" alt="product image" />
+    </div>
+    <div
+      class="d-flex product-card__info"
+      :class="[
+        isVerticalLayout ? 'flex-column' : 'justify-content-between w-100',
+      ]"
+    >
+      <div class="d-flex flex-column">
+        <span class="mb-1">{{ product.title }}</span>
+        <span class="mb-1 product-cart__info-option">product option</span>
+      </div>
       <span class="mb-1 fw-bold">$999.000</span>
-      <div class="">
+      <div
+        class="d-flex product-cart__info-action"
+        :class="[
+          isVerticalLayout
+            ? 'flex-wrap align-items-center'
+            : 'flex-column justify-content-start',
+        ]"
+      >
         <ProductQuantity
           v-model.number="quantity"
-          class="flex"
+          class="mb-2"
+          :class="{ 'me-2': isVerticalLayout }"
           :min="0"
           @input="changeQuantity(...arguments)"
           @blur="changeQuantity(...arguments)"
         />
+        <a href="#" :class="{ 'align-self-end': !isVerticalLayout }">
+          Remove item
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, toRef } from "vue";
+import { computed, ref, toRef } from "vue";
 import ProductQuantity from "@/modules/storefront/components/ProductQuantity";
 import debounce from "@popperjs/core/lib/utils/debounce";
 
@@ -45,6 +60,10 @@ export default {
   },
   emits: ["click", "quantity", "remove"],
   setup(props, ctx) {
+    const isVerticalLayout = computed(
+      () => props.settings.layout === "vertical"
+    );
+
     const product = toRef(props, "product");
     const quantity = ref(1);
 
@@ -62,6 +81,7 @@ export default {
     return {
       quantity,
       changeQuantity,
+      isVerticalLayout,
     };
   },
 };

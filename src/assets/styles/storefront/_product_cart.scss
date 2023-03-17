@@ -1,11 +1,28 @@
 .product-cart {
-  img {
-    width: 64px;
-    height: 64px;
+  &__img {
+    &-small {
+      img {
+        width: 64px;
+        height: 64px;
+      }
+    }
+    &-large {
+      img {
+        width: 172px;
+        height: 172px;
+      }
+    }
   }
   &__info {
     &-option {
       opacity: 0.46;
+    }
+
+    &-action {
+      a {
+        color: #000;
+        opacity: 0.46;
+      }
     }
   }
 }
