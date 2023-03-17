@@ -1,5 +1,13 @@
 .product-page {
   &__info {
-    padding-top: 80px;
+    padding-top: 30px;
+    &-color {
+      .widget-color {
+        span {
+          border: 1px solid #ced4da;
+          padding: 10px;
+        }
+      }
+    }
   }
 }

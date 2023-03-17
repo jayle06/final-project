@@ -82,6 +82,16 @@ export default {
       &__list {
         padding: 30px 0 30px 30px;
       }
+      &__nav-button {
+        top: 195px;
+        &--prev {
+          left: -50px;
+        }
+
+        &--next {
+          right: -50px;
+        }
+      }
     }
   }
 }

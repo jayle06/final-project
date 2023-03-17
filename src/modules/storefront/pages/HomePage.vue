@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <HeaderTop />
     <SliderBanner class="mb-5" :images="defaultBanner" />
     <CategoryItems />
     <div class="bg-light">
@@ -37,26 +36,121 @@
         </div>
       </div>
     </div>
-    <Footer />
+
+    <div class="container bg-transparent">
+      <div class="py-4 footer__top">
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <div
+              class="d-flex align-items-center py-4 footer__top-icon-box footer__top-icon-box-side"
+            >
+              <span class="footer__top-icon-box-icon text-dark">
+                <i class="bi bi-rocket-takeoff"></i>
+              </span>
+              <div class="footer__top-icon-box-content">
+                <h3 class="footer__top-icon-box-title">Free Shipping</h3>
+                <p class="mb-0">Orders $50 or more</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div
+              class="d-flex align-items-center py-4 footer__top-icon-box footer__top-icon-box-side"
+            >
+              <span class="footer__top-icon-box-icon text-dark">
+                <i class="bi bi-arrow-counterclockwise"></i>
+              </span>
+              <div class="footer__top-icon-box-content">
+                <h3 class="footer__top-icon-box-title">Free Returns</h3>
+                <p class="mb-0">Within 30 days</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div
+              class="d-flex align-items-center py-4 footer__top-icon-box footer__top-icon-box-side"
+            >
+              <span class="footer__top-icon-box-icon text-dark">
+                <i class="bi bi-info-circle"></i>
+              </span>
+              <div class="footer__top-icon-box-content">
+                <h3 class="footer__top-icon-box-title">Get 20% Off 1 Item</h3>
+                <p class="mb-0">when you sign up</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div
+              class="d-flex align-items-center py-4 footer__top-icon-box footer__top-icon-box-side"
+            >
+              <span class="footer__top-icon-box-icon text-dark">
+                <i class="bi bi-life-preserver"></i>
+              </span>
+              <div class="footer__top-icon-box-content">
+                <h3 class="footer__top-icon-box-title">We Support</h3>
+                <p class="mb-0">24/7 amazing services</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="cta bg-image bg-dark pt-4 pb-5 mb-0"
+        :style="{
+          'background-image': 'url(' + require('@/assets/demo/bg-5.jpg') + ')',
+        }"
+      >
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-6">
+              <div class="cta-heading text-center">
+                <h3 class="cta-title text-white">Get The Latest Deals</h3>
+                <p class="cta-desc text-white">
+                  and receive
+                  <span class="font-weight-normal">$20 coupon</span> for first
+                  shopping
+                </p>
+              </div>
+
+              <form action="#">
+                <div class="input-group input-group-round">
+                  <input
+                    type="email"
+                    class="form-control form-control-white"
+                    placeholder="Enter your Email Address"
+                    aria-label="Email Adress"
+                    required=""
+                  />
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                      <span>Subscribe</span
+                      ><i class="icon-long-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { reactive, ref } from "vue";
-import HeaderTop from "@/modules/storefront/components/Header";
 import SliderBanner from "@/components/Carousel";
-import ProductsCarousel from "@/components/ProductsCarousel";
-import Footer from "@/modules/storefront/components/Footer";
+import ProductsCarousel from "@/modules/storefront/components/ProductsCarousel";
 import CategoryItems from "@/modules/storefront/components/ListCategory";
 
 export default {
-  name: "HomeView",
+  name: "HomePage",
   components: {
-    HeaderTop,
     SliderBanner,
     ProductsCarousel,
-    Footer,
     CategoryItems,
   },
   setup() {

@@ -14,10 +14,10 @@
       </div>
       <div class="d-flex justify-content-between mini-cart__wrapper-action">
         <a
-          href="#"
           class="d-inline-flex justify-content-center align-items-center px-3 py-2 w-100 btn btn-primary me-2"
+          @click.prevent="goToCartPage"
         >
-          View Cart
+          <span>View Cart</span>
         </a>
         <a
           href="#"
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import { nextTick } from "vue";
+import { useRouter } from "vue-router";
 import ProductCart from "@/modules/storefront/components/ProductCart";
 
 export default {
@@ -47,11 +49,21 @@ export default {
   },
   emits: ["close"],
   setup(_, ctx) {
+    const router = useRouter();
+
     const closeMiniCart = () => {
       ctx.emit("close");
     };
+    const goToCartPage = () => {
+      nextTick(() => {
+        closeMiniCart();
+        router.push("/cart");
+      });
+    };
+
     return {
       closeMiniCart,
+      goToCartPage,
     };
   },
 };

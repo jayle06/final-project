@@ -65,9 +65,11 @@
   &__cart {
     font-size: 24px;
     color: #333;
-    &:hover {
-      cursor: pointer;
-      color: #39f;
+    i {
+      &:hover {
+        cursor: pointer;
+        color: #39f;
+      }
     }
     &-badge {
       top: -2px;

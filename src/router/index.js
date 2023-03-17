@@ -1,20 +1,51 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import HomePage from "@/modules/storefront/pages/HomePage";
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: HomePage,
+  },
+  {
+    path: "/products",
+    name: "products",
+    component: () =>
+      import(
+        /* webpackChunkName: "products" */ "../modules/storefront/pages/ProductListPage.vue"
+      ),
+  },
+  {
+    path: "/collections",
+    name: "collections",
+    component: () =>
+      import(
+        /* webpackChunkName: "collections" */ "../modules/storefront/pages/CollectionListPage.vue"
+      ),
   },
   {
     path: "/about",
     name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../modules/storefront/pages/AboutPage.vue"
+      ),
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    component: () =>
+      import(
+        /* webpackChunkName: "contact" */ "../modules/storefront/pages/ContactPage.vue"
+      ),
+  },
+  {
+    path: "/cart",
+    name: "cart",
+    component: () =>
+      import(
+        /* webpackChunkName: "cart" */ "../modules/storefront/pages/CartPage.vue"
+      ),
   },
   {
     path: "/product",

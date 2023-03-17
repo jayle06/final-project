@@ -8,7 +8,11 @@
         <div class="header-top__right">
           <ul class="p-0 m-0">
             <li class="d-flex align-items-center">
-              <a href="#signin-modal" data-toggle="modal">
+              <a
+                href="#loginModal"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+              >
                 Sign in / Sign up
               </a>
             </li>
@@ -20,9 +24,9 @@
       class="header-middle d-flex align-items-center justify-content-between"
     >
       <div class="container d-flex align-items-center justify-content-between">
-        <a class="header-middle__logo">
+        <router-link class="header-middle__logo" to="/">
           <img src="@/assets/logo.png" alt="logo" />
-        </a>
+        </router-link>
         <div class="header-middle__search input-group">
           <button class="btn btn-outline-secondary px-3 ps-4" type="button">
             <i class="bi bi-search"></i>
@@ -54,29 +58,47 @@
         </div>
       </div>
     </div>
-    <div class="container header-bottom">
-      <div class="d-flex justify-content-center align-items-center py-3 ms-3">
-        <div class="me-3">Product</div>
-        <div class="me-3">Collection</div>
-        <div class="me-3">New</div>
-        <div class="me-3">About</div>
-        <div class="me-3">Contact</div>
+    <div class="header-bottom">
+      <div class="container">
+        <div class="d-flex justify-content-center align-items-center py-3 ms-4">
+          <div class="me-4">
+            <router-link to="products"> Products </router-link>
+          </div>
+          <div class="me-4">
+            <router-link to="collections"> Collections </router-link>
+          </div>
+          <div class="me-4">
+            <router-link to="about"> About </router-link>
+          </div>
+          <div class="me-4">
+            <router-link to="contact"> Contact </router-link>
+          </div>
+        </div>
       </div>
+      <div class="border-bottom"></div>
     </div>
+    <Login
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="modalLabel"
+      aria-hidden="true"
+    />
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
 import MiniCart from "@/modules/storefront/components/MiniCart";
+import Login from "@/modules/storefront/components/Login";
 
 export default {
   name: "MainHeader",
   components: {
     MiniCart,
+    Login,
   },
   setup() {
-    const isShowCat = ref(false);
     const isShowMiniCart = ref(false);
 
     const showMiniCart = () => {
@@ -88,7 +110,6 @@ export default {
     };
 
     return {
-      isShowCat,
       isShowMiniCart,
       closeMiniCart,
       showMiniCart,

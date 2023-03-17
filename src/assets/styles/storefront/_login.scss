@@ -1,0 +1,15 @@
+.login {
+  &__content {
+    border-radius: 0;
+    box-shadow: 0 3px 16px rgba(#333333, 0.1);
+    &-close {
+      top: 0;
+      right: 5px;
+      font-size: 25px;
+      &:hover {
+        color: #39f;
+        cursor: pointer;
+      }
+    }
+  }
+}
