@@ -1,5 +1,5 @@
 <template>
-  <div class="product-carousel">
+  <div class="product-carousel" :style="style">
     <carousel class="mb-lg-4" :options="options">
       <div
         class="slide me-5"
@@ -26,6 +26,7 @@
 import { VueAgile } from "vue-agile";
 import ProductCard from "@/modules/storefront/components/ProductCard";
 import { computed } from "vue";
+import { useMobileDetection } from "vue3-mobile-detection";
 export default {
   name: "ProductsCarousel",
   components: {
@@ -38,6 +39,13 @@ export default {
     },
   },
   setup() {
+    const { isMobile } = useMobileDetection();
+    const padding = computed(() => (isMobile() ? 10 : -50));
+    const style = computed(() => {
+      return {
+        "--nav-padding": `${padding.value}px`,
+      };
+    });
     const options = computed(() => {
       return {
         centerMode: true,
@@ -46,7 +54,7 @@ export default {
         slidesToShow: 5,
         responsive: [
           {
-            breakpoint: 400,
+            breakpoint: 300,
             settings: {
               slidesToShow: 2,
             },
@@ -69,6 +77,7 @@ export default {
 
     return {
       options,
+      style,
     };
   },
 };
@@ -85,11 +94,11 @@ export default {
       &__nav-button {
         top: 195px;
         &--prev {
-          left: -50px;
+          left: var(--nav-padding);
         }
 
         &--next {
-          right: -50px;
+          right: var(--nav-padding);
         }
       }
     }

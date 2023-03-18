@@ -1,5 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "@/modules/storefront/pages/HomePage";
+import CartPage from "@/modules/storefront/pages/CartPage";
+import CheckoutPage from "@/modules/storefront/pages/CheckoutPage";
+import ProductPage from "@/modules/storefront/pages/ProductPage";
+import CollectionListPage from "@/modules/storefront/pages/CollectionListPage";
+import ProductListPage from "@/modules/storefront/pages/ProductListPage";
+import CollectionPage from "@/modules/storefront/pages/CollectionPage";
 
 const routes = [
   {
@@ -10,66 +16,42 @@ const routes = [
   {
     path: "/products",
     name: "products",
-    component: () =>
-      import(
-        /* webpackChunkName: "products" */ "../modules/storefront/pages/ProductListPage.vue"
-      ),
+    component: ProductListPage,
   },
   {
     path: "/collections",
     name: "collections",
-    component: () =>
-      import(
-        /* webpackChunkName: "collections" */ "../modules/storefront/pages/CollectionListPage.vue"
-      ),
+    component: CollectionListPage,
   },
   {
     path: "/collections/:handle",
     name: "collection",
-    component: () =>
-      import(
-        /* webpackChunkName: "collection" */ "../modules/storefront/pages/CollectionPage.vue"
-      ),
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../modules/storefront/pages/AboutPage.vue"
-      ),
-  },
-  {
-    path: "/contact",
-    name: "contact",
-    component: () =>
-      import(
-        /* webpackChunkName: "contact" */ "../modules/storefront/pages/ContactPage.vue"
-      ),
+    component: CollectionPage,
   },
   {
     path: "/cart",
     name: "cart",
-    component: () =>
-      import(
-        /* webpackChunkName: "cart" */ "../modules/storefront/pages/CartPage.vue"
-      ),
+    component: CartPage,
   },
   {
     path: "/products/:handle",
     name: "product",
-    component: () =>
-      import(
-        /* webpackChunkName: "product" */ "../modules/storefront/pages/ProductPage.vue"
-      ),
+    component: ProductPage,
   },
   {
     path: "/checkout",
     name: "checkout",
-    component: () =>
-      import(
-        /* webpackChunkName: "checkout" */ "../modules/storefront/pages/CheckoutPage.vue"
-      ),
+    component: CheckoutPage,
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: () => import("@/modules/storefront/pages/AboutPage.vue"),
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    component: () => import("@/modules/storefront/pages/ContactPage.vue"),
   },
 ];
 

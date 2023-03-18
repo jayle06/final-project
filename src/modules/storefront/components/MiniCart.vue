@@ -16,12 +16,14 @@
           <product-cart :product="product" :settings="settings" />
         </template>
       </div>
-      <div
-        class="px-4 d-flex justify-content-between align-items-center mb-3 pt-3 mini-cart__wrapper-summary"
-      >
-        <span class="text-uppercase">Total</span>
-        <span class="fw-bold mini-cart__wrapper-summary-price"> $999.000 </span>
-      </div>
+
+      <CartSummary
+        class="px-4 mb-3 pt-3 border-top"
+        :cart="{
+          sub_total: 999,
+          offer: 10,
+        }"
+      />
       <div
         class="px-4 pb-4 d-flex justify-content-between mini-cart__wrapper-action"
       >
@@ -47,11 +49,13 @@
 import { computed, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import ProductCart from "@/modules/storefront/components/ProductCart";
+import CartSummary from "@/modules/storefront/components/CartSummary";
 
 export default {
   name: "MiniCart",
   components: {
     ProductCart,
+    CartSummary,
   },
   props: {
     cartItems: {
@@ -71,6 +75,7 @@ export default {
       return {
         layout: "vertical",
         img_size: "small",
+        enable_action: true,
       };
     });
 

@@ -1,6 +1,15 @@
 .product-page {
   &__info {
     padding-top: 30px;
+    &-price {
+      color: #39f;
+      .new-price {
+        color: #ef837b;
+      }
+      .old-price {
+        color: #000;
+      }
+    }
     &-color {
       .widget-color {
         span {

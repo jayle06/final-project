@@ -1,7 +1,9 @@
 <template>
-  <Header />
-  <router-view />
-  <Footer />
+  <div id="app">
+    <Header />
+    <router-view />
+    <Footer />
+  </div>
 </template>
 <script>
 import Header from "@/modules/storefront/components/Header";
@@ -14,3 +16,8 @@ export default {
   },
 };
 </script>
+<style lang="css">
+#app {
+  font-family: "Poppins", sans-serif;
+}
+</style>

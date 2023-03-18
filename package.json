@@ -21,6 +21,7 @@
     "vue": "^3.2.13",
     "vue-agile": "^2.0.0",
     "vue-router": "^4.0.3",
+    "vue3-mobile-detection": "^1.0.5",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

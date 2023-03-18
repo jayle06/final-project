@@ -1,22 +1,35 @@
 <template>
   <div class="d-flex mb-3 product-cart">
-    <div class="me-3" :class="`product-cart__img-${settings.img_size}`">
-      <img :src="product.image" alt="product image" />
+    <div :class="['me-3', `product-cart__img-${settings.img_size}`]">
+      <a href="#" @click="goToProduct(product.handle)">
+        <img :src="product.image" :alt="product.title" />
+      </a>
     </div>
     <div
-      class="d-flex product-card__info"
       :class="[
+        'd-flex product-cart__info',
         isVerticalLayout ? 'flex-column' : 'justify-content-between w-100',
       ]"
     >
-      <div class="d-flex flex-column">
-        <span class="mb-1">{{ product.title }}</span>
+      <div class="d-flex flex-column me-4 product-cart__info-title">
+        <a class="mb-1" href="#" @click="goToProduct(product.handle)">
+          {{ product.title }}
+        </a>
         <span class="mb-1 product-cart__info-option">product option</span>
       </div>
-      <span class="mb-1 fw-bold">$999.000</span>
+      <div :class="['d-flex', { 'flex-column': !isVerticalLayout }]">
+        <span class="mb-1 me-2 fw-bold">${{ product.price }}</span>
+        <span
+          v-if="product.compare_price"
+          class="mb-1 opacity-50 text-decoration-line-through"
+        >
+          ${{ product.compare_price }}
+        </span>
+      </div>
       <div
-        class="d-flex product-cart__info-action"
+        v-if="settings.enable_action"
         :class="[
+          'd-flex product-cart__info-action',
           isVerticalLayout
             ? 'flex-wrap align-items-center'
             : 'flex-column justify-content-start',
@@ -24,13 +37,12 @@
       >
         <ProductQuantity
           v-model.number="quantity"
-          class="mb-2"
-          :class="{ 'me-2': isVerticalLayout }"
+          :class="['mb-2', { 'me-2': isVerticalLayout }]"
           :min="0"
           @input="changeQuantity(...arguments)"
           @blur="changeQuantity(...arguments)"
         />
-        <a href="#" :class="{ 'align-self-end': !isVerticalLayout }">
+        <a href="#" :class="['mb-2', { 'align-self-end': !isVerticalLayout }]">
           Remove item
         </a>
       </div>
@@ -42,6 +54,7 @@
 import { computed, ref, toRef } from "vue";
 import ProductQuantity from "@/modules/storefront/components/ProductQuantity";
 import debounce from "@popperjs/core/lib/utils/debounce";
+import { useRouter } from "vue-router";
 
 export default {
   name: "ProductCart",
@@ -60,6 +73,8 @@ export default {
   },
   emits: ["click", "quantity", "remove"],
   setup(props, ctx) {
+    const router = useRouter();
+
     const isVerticalLayout = computed(
       () => props.settings.layout === "vertical"
     );
@@ -78,10 +93,16 @@ export default {
         });
       }
     });
+
+    const goToProduct = (handle) => {
+      router.push({ name: "product", params: { handle: handle } });
+    };
+
     return {
       quantity,
       changeQuantity,
       isVerticalLayout,
+      goToProduct,
     };
   },
 };

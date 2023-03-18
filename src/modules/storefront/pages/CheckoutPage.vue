@@ -4,14 +4,14 @@
     <div class="checkout my-5">
       <div class="container">
         <div class="row">
-          <div class="col-lg-9">
+          <div class="col-lg-8">
             <h2 class="my-3 checkout__title">Billing Details</h2>
             <label>Email address *</label>
             <input type="email" class="form-control" required="" />
             <div class="custom-control custom-checkbox">
               <input
                 type="checkbox"
-                class="custom-control-input"
+                class="custom-control-input me-2"
                 id="checkout-create-acc"
               />
               <label class="custom-control-label" for="checkout-create-acc">
@@ -65,7 +65,7 @@
               placeholder="Notes about your order, e.g. special notes for delivery"
             ></textarea>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-4">
             <OrderSummary />
           </div>
         </div>

@@ -3,16 +3,27 @@
     <div class="container">
       <BreadCrumb :pages="['products']" :page="product.title" />
       <div class="d-flex flex-column">
-        <div class="d-flex">
-          <div class="w-100 product-page__media">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 product-page__media">
             <ProductImages :images="slides" />
           </div>
-          <div class="ms-4 w-100 product-page__info">
-            <div class="mb-4">
-              <h3>{{ product.title }}</h3>
+          <div
+            :class="['col-lg-5 product-page__info', { 'ms-4': !mobileDevice }]"
+          >
+            <div class="mb-3">
+              <h3 class="fw-bold">{{ product.title }}</h3>
+            </div>
+            <div class="mb-3 fs-3 fw-semibold product-page__info-price">
+              <span class="me-3 new-price">${{ product.price }}</span>
+              <span
+                v-if="product.compare_price"
+                class="text-decoration-line-through opacity-50 old-price"
+              >
+                ${{ product.compare_price }}
+              </span>
             </div>
             <div
-              class="d-flex align-items-center mb-4 product-page__info-color"
+              class="d-flex align-items-center mb-3 product-page__info-color"
             >
               <span class="me-3">Color:</span>
               <div class="d-flex widget-color">
@@ -20,13 +31,10 @@
                 <span class="me-3">Grey</span>
               </div>
             </div>
-            <div class="mb-4 product-page__info-price">
-              ${{ product.price }}
-            </div>
             <div
-              class="d-flex align-items-center mb-4 product-page__info-quantity"
+              class="d-flex align-items-center mb-3 product-page__info-quantity"
             >
-              <span class="me-3">Quantity:</span>
+              <span class="me-3">Qty:</span>
               <ProductQuantity
                 v-model.number="quantity"
                 class="flex"
@@ -36,7 +44,10 @@
                 style="width: 120px"
               />
             </div>
-            <button class="px-3 py-2 w-50 btn btn-primary text-uppercase">
+            <button
+              class="px-3 py-2 btn btn-primary text-uppercase"
+              :class="mobileDevice ? 'w-100' : 'w-50'"
+            >
               Add to cart
             </button>
           </div>
@@ -52,7 +63,8 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
+import { useMobileDetection } from "vue3-mobile-detection";
 import ProductImages from "@/modules/storefront/components/ProductImages";
 import ProductQuantity from "@/modules/storefront/components/ProductQuantity";
 import BreadCrumb from "@/modules/storefront/components/BreadCrumb";
@@ -70,6 +82,9 @@ export default {
   props: {},
   emits: ["quantity"],
   setup(props, ctx) {
+    const { isMobile } = useMobileDetection();
+    const mobileDevice = computed(() => isMobile());
+
     const slides = ref([
       "https://www.maccenter.vn/App_images/MacBookPro-M2-SpaceGray-A.jpg",
       "https://www.maccenter.vn/App_images/MacBookPro-M2-SpaceGray-B.jpg",
@@ -146,6 +161,7 @@ export default {
       handle: "product-2",
       title: "Product A",
       price: 999,
+      compare_price: 1000,
       collection: "Phone",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card's content.",
@@ -173,6 +189,7 @@ export default {
       changeQuantity,
       productsRecommend,
       product,
+      mobileDevice,
     };
   },
 };

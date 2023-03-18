@@ -27,7 +27,7 @@
         <router-link class="header-middle__logo" to="/">
           <img src="@/assets/logo.png" alt="logo" />
         </router-link>
-        <div class="header-middle__search input-group">
+        <div v-if="!mobileDevice" class="header-middle__search input-group">
           <button class="btn btn-outline-secondary px-3 ps-4" type="button">
             <i class="bi bi-search"></i>
           </button>
@@ -68,7 +68,7 @@
               class="me-4"
               @click="goToPage(menu.handle)"
             >
-              <span class="text-capitalize"> {{ menu.title }} </span>
+              <span class="text-capitalize fw-semibold">{{ menu.title }}</span>
             </div>
           </template>
         </div>
@@ -86,10 +86,11 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import MiniCart from "@/modules/storefront/components/MiniCart";
 import Login from "@/modules/storefront/components/Login";
 import { useRouter } from "vue-router";
+import { useMobileDetection } from "vue3-mobile-detection";
 
 export default {
   name: "MainHeader",
@@ -99,6 +100,8 @@ export default {
   },
   setup() {
     const router = useRouter();
+    const { isMobile } = useMobileDetection();
+    const mobileDevice = computed(() => isMobile());
     const isShowMiniCart = ref(false);
     const menus = reactive([
       {
@@ -136,12 +139,26 @@ export default {
       {
         id: 1,
         title: "Product Sample",
+        handle: "product-sample",
         image: "https://www.linkpicture.com/q/product-2_3.jpg",
+        price: 99,
+        compare_price: 99,
       },
       {
         id: 2,
         title: "Product Sample 2",
+        handle: "product-sample-2",
         image: "https://www.linkpicture.com/q/product-2_3.jpg",
+        price: 99,
+        compare_price: 99,
+      },
+      {
+        id: 3,
+        title: "Product Sample 2",
+        handle: "product-sample-3",
+        image: "https://www.linkpicture.com/q/product-2_3.jpg",
+        price: 99,
+        compare_price: 99,
       },
     ]);
 
@@ -161,6 +178,7 @@ export default {
       menus,
       cartItems,
       isShowMiniCart,
+      mobileDevice,
       closeMiniCart,
       showMiniCart,
       goToPage,

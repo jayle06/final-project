@@ -12,12 +12,9 @@
       >
         New
       </span>
-      <img
-        :src="product.images.main_image"
-        class="card-img-top"
-        alt="..."
-        @click="showProductDetail(product.handle)"
-      />
+      <a href="#" @click="showProductDetail(product.handle)">
+        <img :src="product.images.main_image" class="card-img-top" alt="..." />
+      </a>
       <div
         v-if="showAddCart"
         class="position-absolute w-100 p-3 product-card__media-action"

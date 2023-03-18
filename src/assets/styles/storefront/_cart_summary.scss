@@ -1,0 +1,11 @@
+.cart-summary {
+  &__total {
+    color: rgba(#000, 0.8);
+    &-price {
+      font-size: 16px;
+    }
+  }
+  &__note {
+    font-size: 12px;
+  }
+}
