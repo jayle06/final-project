@@ -9,6 +9,36 @@
           <ul class="p-0 m-0">
             <li class="d-flex align-items-center">
               <a
+                v-if="isUserLogged"
+                class="position-relative d-flex"
+                @mouseenter="isShowAccount = true"
+                @mouseleave="isShowAccount = false"
+              >
+                <i class="bi bi-person me-2"></i>
+                <span>Hello, {{ user.email }}</span>
+                <div
+                  v-if="isShowAccount"
+                  class="position-absolute d-flex flex-column header-top__right-action"
+                  @mouseenter="isShowAccount = true"
+                  @mouseleave="isShowAccount = false"
+                >
+                  <ul class="p-2">
+                    <li class="mb-2">
+                      <router-link href="#" to="/users/my-profile">
+                        My profile
+                      </router-link>
+                    </li>
+                    <li class="mb-2">
+                      <router-link href="#" to="/users/order-history">
+                        Order history
+                      </router-link>
+                    </li>
+                    <li><a href="#">Logout</a></li>
+                  </ul>
+                </div>
+              </a>
+              <a
+                v-else
                 href="#loginModal"
                 data-bs-toggle="modal"
                 data-bs-target="#loginModal"
@@ -68,7 +98,7 @@
               class="me-4"
               @click="goToPage(menu.handle)"
             >
-              <span class="text-capitalize fw-semibold">{{ menu.title }}</span>
+              <span class="text-capitalize">{{ menu.title }}</span>
             </div>
           </template>
         </div>
@@ -102,7 +132,11 @@ export default {
     const router = useRouter();
     const { isMobile } = useMobileDetection();
     const mobileDevice = computed(() => isMobile());
+
     const isShowMiniCart = ref(false);
+    const isShowAccount = ref(false);
+    const isUserLogged = ref(true);
+
     const menus = reactive([
       {
         id: 1,
@@ -161,6 +195,10 @@ export default {
         compare_price: 99,
       },
     ]);
+    const user = reactive({
+      id: 1,
+      email: "hoangle",
+    });
 
     const showMiniCart = () => {
       isShowMiniCart.value = !isShowMiniCart.value;
@@ -179,6 +217,9 @@ export default {
       cartItems,
       isShowMiniCart,
       mobileDevice,
+      isUserLogged,
+      user,
+      isShowAccount,
       closeMiniCart,
       showMiniCart,
       goToPage,

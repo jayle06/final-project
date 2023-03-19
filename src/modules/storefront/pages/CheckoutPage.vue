@@ -88,87 +88,8 @@ export default {
 
 <style lang="css" scoped>
 .form-control {
-  height: 40px;
-  padding: 8.5px 20px;
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 300;
-  color: #777;
-  background-color: #fafafa;
   border: 1px solid #ebebeb;
-  border-radius: 0;
   margin-bottom: 20px;
-  transition: all 0.3s;
-  box-shadow: none;
-}
-select.form-control:not([size]):not([multiple]) {
-  height: 40px;
-}
-.form-control-white {
-  border-color: #fff;
-}
-.form-control:focus {
-  color: #777;
-  background-color: #fff;
-  border-color: #39f;
-  box-shadow: none;
-  outline: none !important;
-}
-.form-control::placeholder {
-  color: #777;
-}
-textarea.form-control {
-  min-height: 130px;
-  padding-top: 11px;
-  padding-bottom: 11px;
-}
-.form-control-rounded {
-  border-radius: 2px;
-}
-.input-group-round .form-control {
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-}
-.input-group-round > .input-group-append > .btn {
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-}
-label {
-  color: #666;
-  font-weight: 300;
-  font-size: 14px;
-  margin: 0 0 11px;
-}
-.form-text {
-  color: #999;
-  line-height: 1.5;
-  margin-top: 0;
-}
-.form-control + .form-text {
-  margin-top: -5px;
-  margin-bottom: 6px;
-}
-small.form-text {
-  font-size: 85%;
-}
-.required-field > label::after {
-  content: "*";
-  color: #e02b27;
-  font-size: 12px;
-  margin: 0 0 0 4.5px;
-}
-.required {
-  color: #e02b27;
-  font-size: 12px;
-}
-.required + .form-footer {
-  margin-top: 8px;
-}
-.form-footer {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top: 6px;
 }
 
 p {

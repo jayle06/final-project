@@ -8,6 +8,7 @@ import ProductListPage from "@/modules/storefront/pages/ProductListPage";
 import CollectionPage from "@/modules/storefront/pages/CollectionPage";
 
 const routes = [
+  // Storefront router
   {
     path: "/",
     name: "home",
@@ -52,6 +53,28 @@ const routes = [
     path: "/contact",
     name: "contact",
     component: () => import("@/modules/storefront/pages/ContactPage.vue"),
+  },
+  {
+    path: "/users/my-profile",
+    name: "profile",
+    component: () => import("@/modules/storefront/pages/MyProfilePage.vue"),
+  },
+  {
+    path: "/users/order-history",
+    name: "orders",
+    component: () => import("@/modules/storefront/pages/OrdersPage.vue"),
+  },
+  {
+    path: "/users/invoice/:id",
+    name: "invoices",
+    component: () => import("@/modules/storefront/pages/InvoicePage.vue"),
+  },
+
+  // Dashboard router
+  {
+    path: "/admin",
+    name: "dashboard-home",
+    component: () => import("@/modules/dashboard/pages/HomePage.vue"),
   },
 ];
 

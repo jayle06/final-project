@@ -1,21 +1,20 @@
 <template>
-  <div class="mb-4 px-4 pt-3 summary">
+  <div class="p-4 summary">
     <h3 class="pb-3 mb-4 summary__title">Your Order</h3>
     <div class="d-flex flex-column">
       <template v-for="(product, index) in cartItems" :key="index">
         <product-cart class="mb-2" :product="product" :settings="settings" />
       </template>
     </div>
-    <div class="accordion-summary"></div>
 
     <button
       type="submit"
-      class="btn btn-outline-primary-2 btn-order btn-lg btn-block w-100"
+      class="btn btn-outline-primary-2 btn-order btn-lg w-100"
       @mouseenter="hoverCheckout = true"
       @mouseleave="hoverCheckout = false"
     >
-      <span v-if="!hoverCheckout" class="btn-text"> Place Order </span>
-      <span v-else class="btn-hover-text"> Proceed to Checkout </span>
+      <span v-if="!hoverCheckout" class="fs-6 fw-bold"> Place Order </span>
+      <span v-else class="fs-6 fw-bold"> Proceed to Checkout </span>
     </button>
   </div>
 </template>

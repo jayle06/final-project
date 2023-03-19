@@ -8,6 +8,7 @@
   a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
     &:hover {
       color: #39f;
     }
@@ -18,6 +19,17 @@
     text-transform: capitalize;
     ul {
       list-style: none;
+    }
+    &-action {
+      top: 21px;
+      left: 0;
+      z-index: 99;
+      background-color: #fff;
+      border: 1px solid #ebebeb;
+      transition: ease-in all 0.5s;
+      ul {
+        color: #777777;
+      }
     }
   }
 }
@@ -94,6 +106,7 @@
 }
 
 .header-bottom {
+  color: #333;
   span {
     cursor: pointer;
     &:hover, &:active {
