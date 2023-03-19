@@ -76,6 +76,21 @@ const routes = [
     name: "dashboard-home",
     component: () => import("@/modules/dashboard/pages/HomePage.vue"),
   },
+  {
+    path: "/admin/orders",
+    name: "dashboard-orders",
+    component: () => import("@/modules/dashboard/pages/Orders.vue"),
+  },
+  {
+    path: "/admin/products",
+    name: "dashboard-products",
+    component: () => import("@/modules/dashboard/pages/Products.vue"),
+  },
+  {
+    path: "/admin/customers",
+    name: "dashboard-customers",
+    component: () => import("@/modules/dashboard/pages/Customers.vue"),
+  },
 ];
 
 const router = createRouter({

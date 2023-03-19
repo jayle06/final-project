@@ -1,26 +1,35 @@
 <template>
   <div id="app">
-    <sf-header v-if="!isDashboard" />
-    <transition name="fade" mode="out-in">
-      <router-view />
-    </transition>
-    <sf-footer v-if="!isDashboard" />
+    <main-header v-if="!isDashboard" />
+    <div :class="{ 'row m-0 justify-content-end': isDashboard }">
+      <dashboard-side-bar v-if="isDashboard" class="col-lg-2" />
+      <router-view v-slot="{ Component }" :class="{ 'col-lg-10': isDashboard }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </div>
+    <main-footer v-if="!isDashboard" />
   </div>
 </template>
 <script>
-import SfHeader from "@/modules/storefront/components/Header";
-import SfFooter from "@/modules/storefront/components/Footer";
+import MainHeader from "@/modules/storefront/components/Header";
+import MainFooter from "@/modules/storefront/components/Footer";
+import DashboardSideBar from "@/modules/dashboard/components/SideBar";
 import { computed } from "vue";
 export default {
   name: "App",
   components: {
-    SfHeader,
-    SfFooter,
+    MainHeader,
+    MainFooter,
+    DashboardSideBar,
   },
   setup() {
-    const isDashboard = computed(() =>
-      window.location.pathname.includes("admin")
-    );
+    const isDashboard = computed(() => {
+      const path = window.location.pathname.trim().slice(1);
+      const pathArr = path.split("/");
+      return pathArr[0] === "admin";
+    });
     return {
       isDashboard,
     };

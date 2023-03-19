@@ -30,11 +30,15 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row"><a href="#">#00001</a></th>
-                  <td>Macbook pro 2022 M2 RAM 16GB 500GB</td>
-                  <td>19-03-2023</td>
-                  <td>done</td>
-                  <td>
+                  <th scope="row" class="align-middle">
+                    <a href="#">#00001</a>
+                  </th>
+                  <td class="align-middle">
+                    Macbook pro 2022 M2 RAM 16GB 500GB
+                  </td>
+                  <td class="align-middle">19-03-2023</td>
+                  <td class="align-middle">done</td>
+                  <td class="align-middle">
                     <router-link
                       :to="`/users/invoice/1`"
                       class="btn btn-outline-primary-2 btn-order"
@@ -64,6 +68,7 @@ export default {
 
 <style lang="scss" scoped>
 .orders-table {
+  min-height: 500px;
   border: 1px solid #ebebeb;
 }
 </style>

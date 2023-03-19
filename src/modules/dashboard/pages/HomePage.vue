@@ -1,5 +1,7 @@
 <template>
-  <div>Dashboard home page</div>
+  <div class="dashboard-home">
+    <div class="container">Hell no</div>
+  </div>
 </template>
 
 <script>
