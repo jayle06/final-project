@@ -10,6 +10,7 @@
         <ProductCard :product="product" />
       </div>
     </div>
+    <Pagination v-if="products.length > 10" />
   </div>
 </template>
 
@@ -17,12 +18,14 @@
 import { reactive } from "vue";
 import BreadCrumb from "@/modules/storefront/components/BreadCrumb";
 import ProductCard from "@/modules/storefront/components/ProductCard";
+import Pagination from "@/components/Pagination";
 
 export default {
   name: "ProductListPage",
   components: {
     BreadCrumb,
     ProductCard,
+    Pagination,
   },
   setup() {
     const products = reactive([

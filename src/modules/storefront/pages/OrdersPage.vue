@@ -29,18 +29,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr v-for="(order, index) in orders" :key="index">
                   <th scope="row" class="align-middle">
-                    <a href="#">#00001</a>
+                    <a href="#">#{{ order.id }}</a>
                   </th>
-                  <td class="align-middle">
-                    Macbook pro 2022 M2 RAM 16GB 500GB
-                  </td>
-                  <td class="align-middle">19-03-2023</td>
-                  <td class="align-middle">done</td>
+                  <td class="align-middle">{{ order.products }}</td>
+                  <td class="align-middle">{{ order.created_at }}</td>
+                  <td class="align-middle">{{ order.status }}</td>
                   <td class="align-middle">
                     <router-link
-                      :to="`/users/invoice/1`"
+                      :to="`/users/invoice/${order.id}`"
                       class="btn btn-outline-primary-2 btn-order"
                     >
                       <span class="fs-6"> Invoice </span>
@@ -50,6 +48,7 @@
               </tbody>
             </table>
           </div>
+          <Pagination v-if="orders.length > 10" class="mt-3" />
         </div>
       </div>
     </div>
@@ -57,11 +56,35 @@
 </template>
 
 <script>
+import { reactive } from "vue";
 import BreadCrumb from "@/modules/storefront/components/BreadCrumb";
+import Pagination from "@/components/Pagination";
+
 export default {
   name: "OrdersPage",
   components: {
     BreadCrumb,
+    Pagination,
+  },
+  setup() {
+    const orders = reactive([
+      {
+        id: 1000,
+        products: "Macbook pro 2022 M2 RAM 16GB 500GB",
+        created_at: "19-03-2023",
+        status: "done",
+      },
+      {
+        id: 1001,
+        products: "Macbook pro 2022 M2 RAM 16GB 500GB",
+        created_at: "19-03-2023",
+        status: "done",
+      },
+    ]);
+
+    return {
+      orders,
+    };
   },
 };
 </script>

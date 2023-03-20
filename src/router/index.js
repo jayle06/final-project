@@ -69,6 +69,11 @@ const routes = [
     name: "invoices",
     component: () => import("@/modules/storefront/pages/InvoicePage.vue"),
   },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: () => import("@/modules/storefront/pages/NotFoundPage.vue"),
+  },
 
   // Dashboard router
   {
@@ -90,6 +95,11 @@ const routes = [
     path: "/admin/customers",
     name: "dashboard-customers",
     component: () => import("@/modules/dashboard/pages/Customers.vue"),
+  },
+  {
+    path: "/admin/:pathMatch(.*)*",
+    name: "dashboard-not-found",
+    component: () => import("@/components/NotFound.vue"),
   },
 ];
 

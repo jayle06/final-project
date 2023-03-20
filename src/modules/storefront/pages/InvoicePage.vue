@@ -5,7 +5,7 @@
       <div ref="invoiceRef" class="mb-5">
         <div class="w-100 p-5 invoice">
           <h2 class="mb-2 fw-bold">invoice</h2>
-          <p>order #0001</p>
+          <p>order #{{ order.id }}</p>
           <div class="row border-top pt-3 pb-5">
             <div class="col-lg-6 d-flex flex-column">
               <span class="fw-semibold">Billed To:</span>
@@ -40,19 +40,19 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Macbook pro 2022 M2 RAM 16GB 500GB</td>
-                  <td>$999</td>
-                  <td>1</td>
-                  <td>$999</td>
+                <tr v-for="(item, index) in order.products" :key="index">
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ item.title }}</td>
+                  <td>${{ item.price }}</td>
+                  <td>{{ item.qty }}</td>
+                  <td>${{ item.subtotal }}</td>
                 </tr>
                 <tr>
                   <th></th>
                   <td></td>
                   <td></td>
                   <th scope="row" class="text-uppercase">subtotal:</th>
-                  <td>$999</td>
+                  <td>${{ order.subtotal }}</td>
                 </tr>
               </tbody>
             </table>
@@ -81,6 +81,28 @@ export default {
   },
   setup() {
     const invoiceRef = ref();
+    const order = ref({
+      id: 1001,
+      products: [
+        {
+          id: 1,
+          title: "Macbook pro 2022 M2 RAM 16GB 500GB",
+          price: 999,
+          qty: 1,
+          subtotal: 999,
+        },
+        {
+          id: 2,
+          title: "Macbook pro 2020 M1 RAM 16GB 500GB",
+          price: 899,
+          qty: 1,
+          subtotal: 899,
+        },
+      ],
+      subtotal: 1898,
+      created_at: "19-03-2023",
+      status: "done",
+    });
     const printInvoice = () => {
       const invoiceWindow = window.open(
         "",
@@ -94,6 +116,7 @@ export default {
       invoiceWindow.print();
     };
     return {
+      order,
       invoiceRef,
       printInvoice,
     };
