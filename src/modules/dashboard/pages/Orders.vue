@@ -16,7 +16,9 @@
           <tbody>
             <tr v-for="(order, index) in orders" :key="index">
               <th scope="row" class="align-middle">
-                <a href="#">#{{ order.id }}</a>
+                <router-link href="#" :to="`/admin/orders/${order.id}`">
+                  #{{ order.id }}
+                </router-link>
               </th>
               <td class="align-middle py-4">{{ order.customer_email }}</td>
               <td class="align-middle py-4">{{ order.created_at }}</td>

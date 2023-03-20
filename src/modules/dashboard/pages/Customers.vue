@@ -16,7 +16,9 @@
           <tbody>
             <tr v-for="(customer, index) in customers" :key="index">
               <th scope="row" class="align-middle">
-                <a href="#">#{{ customer.id }}</a>
+                <router-link href="#" :to="`/admin/customers/${customer.id}`">
+                  #{{ customer.id }}
+                </router-link>
               </th>
               <td class="align-middle py-4">{{ customer.name }}</td>
               <td class="align-middle py-4">{{ customer.customer_email }}</td>

@@ -20,6 +20,7 @@
             <tr>
               <th scope="col">Product ID</th>
               <th scope="col">Title</th>
+              <th scope="col">Price</th>
               <th scope="col">Date</th>
               <th scope="col">Status</th>
             </tr>
@@ -27,9 +28,12 @@
           <tbody>
             <tr v-for="(product, index) in products" :key="index">
               <th scope="row" class="align-middle">
-                <a href="#">#{{ product.id }}</a>
+                <router-link href="#" :to="`/admin/products/${product.id}`">
+                  #{{ product.id }}
+                </router-link>
               </th>
               <td class="align-middle py-4">{{ product.title }}</td>
+              <td class="align-middle py-4">${{ product.price }}</td>
               <td class="align-middle py-4">{{ product.created_at }}</td>
               <td class="align-middle py-4">{{ product.status }}</td>
             </tr>
@@ -47,7 +51,9 @@ import Pagination from "@/components/Pagination";
 
 export default {
   name: "ProductsPage",
-  components: { Pagination },
+  components: {
+    Pagination,
+  },
   setup() {
     const productsRef = ref();
     const products = ref([
@@ -56,18 +62,21 @@ export default {
         created_at: "12-3-2023",
         status: "active",
         title: "Macbook pro 2022 M2 RAM 16GB 500GB",
+        price: 999,
       },
       {
         id: 1001,
         created_at: "12-3-2023",
         status: "active",
         title: "Macbook pro 2022 M2 RAM 16GB 500GB",
+        price: 999,
       },
       {
         id: 1002,
         created_at: "12-3-2023",
         status: "active",
         title: "Macbook pro 2022 M2 RAM 16GB 500GB",
+        price: 999,
       },
     ]);
 

@@ -78,27 +78,42 @@ const routes = [
   // Dashboard router
   {
     path: "/admin",
-    name: "dashboard-home",
+    name: "db-home",
     component: () => import("@/modules/dashboard/pages/HomePage.vue"),
   },
   {
     path: "/admin/orders",
-    name: "dashboard-orders",
+    name: "db-orders",
     component: () => import("@/modules/dashboard/pages/Orders.vue"),
   },
   {
+    path: "/admin/orders/:id",
+    name: "db-order-detail",
+    component: () => import("@/modules/dashboard/pages/OrderDetail.vue"),
+  },
+  {
     path: "/admin/products",
-    name: "dashboard-products",
+    name: "db-products",
     component: () => import("@/modules/dashboard/pages/Products.vue"),
   },
   {
+    path: "/admin/products/:id",
+    name: "db-product-detail",
+    component: () => import("@/modules/dashboard/pages/ProductDetail.vue"),
+  },
+  {
     path: "/admin/customers",
-    name: "dashboard-customers",
+    name: "db-customers",
     component: () => import("@/modules/dashboard/pages/Customers.vue"),
   },
   {
+    path: "/admin/customers/:id",
+    name: "db-customer-detail",
+    component: () => import("@/modules/dashboard/pages/CustomerDetail.vue"),
+  },
+  {
     path: "/admin/:pathMatch(.*)*",
-    name: "dashboard-not-found",
+    name: "db-not-found",
     component: () => import("@/components/NotFound.vue"),
   },
 ];

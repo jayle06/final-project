@@ -145,9 +145,8 @@
                     required=""
                   />
                   <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
-                      <span>Subscribe</span
-                      ><i class="icon-long-arrow-right"></i>
+                    <button class="btn btn-primary h-100" type="submit">
+                      <span>Subscribe</span>
                     </button>
                   </div>
                 </div>

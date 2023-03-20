@@ -46,16 +46,43 @@
         </a>
       </div>
       <div class="position-absolute p-3 w-100 border-top side-bar__user">
-        <a href="#" class="d-flex align-items-center justify-content-center">
-          <i class="bi bi-person-circle fs-1 me-3"></i>
+        <div
+          href="#"
+          class="position-relative d-flex align-items-center justify-content-center"
+          @click="showProfile"
+        >
+          <i class="bi bi-person-circle fs-2 me-2"></i>
           <span>Hello, Hoang</span>
-        </a>
+          <i v-if="isShowProfile" class="bi bi-arrows-collapse ms-2"></i>
+          <i v-else class="bi bi-arrows-expand ms-2"></i>
+          <div
+            v-if="isShowProfile"
+            class="position-absolute py-3 w-100 border side-bar__user-action"
+            :class="{ 'side-bar__user-action--active': isShowProfile }"
+          >
+            <ul class="px-3 m-0">
+              <li>
+                <a href="#" class="d-flex align-items-center p-1">
+                  <i class="bi bi-person-bounding-box fs-5 me-3"></i>
+                  My Profile
+                </a>
+              </li>
+              <li>
+                <a href="#" class="d-flex align-items-center p-1">
+                  <i class="bi bi-box-arrow-left fs-5 me-3"></i>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 export default {
@@ -63,13 +90,21 @@ export default {
   setup() {
     const router = useRouter();
 
+    const isShowProfile = ref(false);
+
     const goToOnlineStore = () => {
       const routeData = router.resolve("/");
       window.open(routeData.href, "_blank");
     };
 
+    const showProfile = () => {
+      isShowProfile.value = !isShowProfile.value;
+    };
+
     return {
+      isShowProfile,
       goToOnlineStore,
+      showProfile,
     };
   },
 };
