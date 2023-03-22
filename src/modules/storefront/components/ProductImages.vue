@@ -6,8 +6,8 @@
       :options="options1"
       :as-nav-for="asNavFor1"
     >
-      <div v-for="(image, index) in images" :key="index">
-        <img class="slide" :src="image" />
+      <div class="p-4 border" v-for="(image, index) in images" :key="index">
+        <img class="slide" :src="image.url" />
       </div>
     </carousel>
     <carousel
@@ -23,7 +23,7 @@
         :class="`slide--${index}`"
         @click="$refs.thumbnails.goTo(index)"
       >
-        <img class="slide" :src="image" />
+        <img class="slide" :src="image.url" />
       </div>
       <template v-slot:prevButton>
         <i class="bi bi-chevron-left"></i>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import { VueAgile } from "vue-agile";
 
 export default {
@@ -47,9 +47,10 @@ export default {
   props: {
     images: {
       type: Array,
+      default: () => [],
     },
   },
-  setup(props) {
+  setup() {
     const asNavFor1 = ref([]);
     const asNavFor2 = ref([]);
     const thumbnails = ref(null);
@@ -58,18 +59,14 @@ export default {
       dots: false,
       fade: true,
       navButtons: false,
+      slidesToShow: 1,
     });
 
-    const slidesToShow = computed(() =>
-      props.images.length < 5 ? props.images.length : 5
-    );
-    const options2 = computed(() => {
-      return {
-        centerMode: true,
-        dots: false,
-        navButtons: true,
-        slidesToShow: slidesToShow.value,
-      };
+    const options2 = ref({
+      centerMode: true,
+      dots: false,
+      navButtons: true,
+      slidesToShow: 5,
     });
 
     onMounted(() => {

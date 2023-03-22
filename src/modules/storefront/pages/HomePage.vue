@@ -197,9 +197,11 @@ export default {
         collection: "Phone",
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-1.jpg",
-        },
+        images: [
+          {
+            url: "https://www.linkpicture.com/q/product-1.jpg",
+          },
+        ],
       },
       {
         id: 2,
@@ -209,9 +211,11 @@ export default {
         collection: "Phone",
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-2_3.jpg",
-        },
+        images: [
+          {
+            url: "https://www.linkpicture.com/q/product-2_3.jpg",
+          },
+        ],
       },
       {
         id: 3,
@@ -221,33 +225,11 @@ export default {
         collection: "Phone",
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-3_3.jpg",
-        },
-      },
-      {
-        id: 4,
-        handle: "product-4",
-        title: "Product A",
-        collection: "Phone",
-        price: 999,
-        description:
-          "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-4_2.jpg",
-        },
-      },
-      {
-        id: 5,
-        handle: "product-5",
-        title: "Product A",
-        collection: "Phone",
-        price: 999,
-        description:
-          "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-5_1.jpg",
-        },
+        images: [
+          {
+            url: "https://www.linkpicture.com/q/product-3_3.jpg",
+          },
+        ],
       },
     ]);
 

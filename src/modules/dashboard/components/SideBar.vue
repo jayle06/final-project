@@ -82,13 +82,16 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useMobileDetection } from "vue3-mobile-detection";
 
 export default {
   name: "SideBar",
   setup() {
     const router = useRouter();
+    const { isMobile } = useMobileDetection();
+    const mobileDevice = computed(() => isMobile());
 
     const isShowProfile = ref(false);
 
@@ -102,6 +105,7 @@ export default {
     };
 
     return {
+      mobileDevice,
       isShowProfile,
       goToOnlineStore,
       showProfile,

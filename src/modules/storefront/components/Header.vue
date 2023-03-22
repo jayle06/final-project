@@ -58,13 +58,19 @@
           <img src="@/assets/logo.png" alt="logo" />
         </router-link>
         <div v-if="!mobileDevice" class="header-middle__search input-group">
-          <button class="btn btn-outline-secondary px-3 ps-4" type="button">
+          <button
+            class="btn btn-outline-secondary px-3 ps-4"
+            type="button"
+            @click="searchProduct"
+          >
             <i class="bi bi-search"></i>
           </button>
           <input
+            v-model="search"
             type="text"
             class="form-control"
             placeholder="Search product..."
+            @keyup.enter="searchProduct"
           />
         </div>
         <div class="header-middle__cart position-relative">
@@ -136,6 +142,7 @@ export default {
     const isShowMiniCart = ref(false);
     const isShowAccount = ref(false);
     const isUserLogged = ref(true);
+    const search = ref("");
 
     const menus = reactive([
       {
@@ -212,6 +219,10 @@ export default {
       router.push({ name: page });
     };
 
+    const searchProduct = () => {
+      router.push({ name: "search", params: { search: search.value } });
+    };
+
     return {
       menus,
       cartItems,
@@ -220,9 +231,11 @@ export default {
       isUserLogged,
       user,
       isShowAccount,
+      search,
       closeMiniCart,
       showMiniCart,
       goToPage,
+      searchProduct,
     };
   },
 };

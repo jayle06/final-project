@@ -6,6 +6,7 @@ import ProductPage from "@/modules/storefront/pages/ProductPage";
 import CollectionListPage from "@/modules/storefront/pages/CollectionListPage";
 import ProductListPage from "@/modules/storefront/pages/ProductListPage";
 import CollectionPage from "@/modules/storefront/pages/CollectionPage";
+import SearchPage from "@/modules/storefront/pages/SearchPage";
 
 const routes = [
   // Storefront router
@@ -18,6 +19,11 @@ const routes = [
     path: "/products",
     name: "products",
     component: ProductListPage,
+  },
+  {
+    path: "/q/:search",
+    name: "search",
+    component: SearchPage,
   },
   {
     path: "/collections",

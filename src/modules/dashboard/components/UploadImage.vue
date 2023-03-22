@@ -4,7 +4,7 @@
       <img :src="img" class="me-3" />
     </div>
     <input type="file" id="file" ref="fileRef" @change="handleFileUpload()" />
-    <button @click="fileRef.click()">+</button>
+    <button @click="$refs.fileRef.click()">+</button>
     <button @click="submitFile()">Upload</button>
   </div>
 </template>
@@ -24,7 +24,6 @@ export default {
       let formData = new FormData();
       if (file.value !== "") {
         formData.append("file", file.value);
-        debugger;
         api
           .uploadImages(formData)
           .then((response) => {
@@ -39,7 +38,6 @@ export default {
 
     const handleFileUpload = () => {
       file.value = fileRef.value.files[0];
-      debugger;
     };
 
     return {

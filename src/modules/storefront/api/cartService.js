@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   async createCart(payload) {
     return await axios
-      .post(`${process.env.DEV_DOMAIN}/cart`, payload, {
+      .post(`${process.env.DEV_DOMAIN}/api/cart`, payload, {
         withCredentials: true,
       })
       .then((response) => {
@@ -12,12 +12,12 @@ export default {
   },
 
   async getCart(token) {
-    return await axios.get(`${process.env.DEV_DOMAIN}/cart/${token}`);
+    return await axios.get(`${process.env.DEV_DOMAIN}/api/cart/${token}`);
   },
 
   async updateCart(payload) {
     return await axios
-      .put(`${process.env.DEV_DOMAIN}/cart`, payload, {
+      .put(`${process.env.DEV_DOMAIN}/api/cart`, payload, {
         withCredentials: true,
       })
       .then((response) => {

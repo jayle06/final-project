@@ -23,7 +23,7 @@ export default {
 
   async createNewUser(payload) {
     return await axios
-      .post(`${process.env.DEV_DOMAIN}/users`, payload, {
+      .post(`${process.env.DEV_DOMAIN}/api/users`, payload, {
         withCredentials: true,
       })
       .then((response) => {
@@ -33,7 +33,7 @@ export default {
 
   async getMyProfile(id) {
     return await axios
-      .get(`${process.env.DEV_DOMAIN}/my-profile/${id}`, {
+      .get(`${process.env.DEV_DOMAIN}/api/my-profile/${id}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -43,7 +43,7 @@ export default {
 
   async updateMyProfile(payload) {
     return await axios
-      .put(`${process.env.DEV_DOMAIN}/my-profile`, payload, {
+      .put(`${process.env.DEV_DOMAIN}/api/my-profile`, payload, {
         withCredentials: true,
       })
       .then((response) => {
@@ -53,7 +53,7 @@ export default {
 
   async updatePassword(payload) {
     return await axios
-      .put(`${process.env.DEV_DOMAIN}/change-password`, payload, {
+      .put(`${process.env.DEV_DOMAIN}/api/change-password`, payload, {
         withCredentials: true,
       })
       .then((response) => {

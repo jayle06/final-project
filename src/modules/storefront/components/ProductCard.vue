@@ -13,7 +13,7 @@
         New
       </span>
       <a href="#" @click="showProductDetail(product.handle)">
-        <img :src="product.images.main_image" class="card-img-top" alt="..." />
+        <img :src="product.images[0].url" class="card-img-top" alt="..." />
       </a>
       <div
         v-if="showAddCart"

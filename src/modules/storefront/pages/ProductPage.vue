@@ -26,10 +26,7 @@
               class="d-flex align-items-center mb-3 product-page__info-color"
             >
               <span class="me-3">Color:</span>
-              <div class="d-flex widget-color">
-                <span class="me-3">White</span>
-                <span class="me-3">Grey</span>
-              </div>
+              <div class="d-flex widget-color"></div>
             </div>
             <div
               class="d-flex align-items-center mb-3 product-page__info-quantity"
@@ -63,13 +60,15 @@
 </template>
 
 <script>
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, onBeforeMount, nextTick } from "vue";
 import { useMobileDetection } from "vue3-mobile-detection";
 import ProductImages from "@/modules/storefront/components/ProductImages";
 import ProductQuantity from "@/modules/storefront/components/ProductQuantity";
 import BreadCrumb from "@/modules/storefront/components/BreadCrumb";
 import ProductsCarousel from "@/modules/storefront/components/ProductsCarousel";
 import debounce from "@popperjs/core/lib/utils/debounce";
+import api from "@/modules/storefront/api/productService";
+import { useRoute, useRouter } from "vue-router";
 
 export default {
   name: "ProductPage",
@@ -82,16 +81,23 @@ export default {
   props: {},
   emits: ["quantity"],
   setup(props, ctx) {
+    const route = useRoute();
+    const router = useRouter();
     const { isMobile } = useMobileDetection();
     const mobileDevice = computed(() => isMobile());
+    const slides = computed(() => product.value.images || []);
 
-    const slides = ref([
-      "https://www.maccenter.vn/App_images/MacBookPro-M2-SpaceGray-A.jpg",
-      "https://www.maccenter.vn/App_images/MacBookPro-M2-SpaceGray-B.jpg",
-      "https://www.maccenter.vn/App_images/MacBookPro-M2-SpaceGray-C.jpg",
-      "https://www.maccenter.vn/App_images/MacBookPro-M2-SpaceGray-D.jpg",
-      "https://www.maccenter.vn/App_images/MacBookPro-M2-SpaceGray-E.jpg",
-    ]);
+    const quantity = ref(1);
+    const product = ref({});
+
+    onBeforeMount(() => {
+      nextTick(async () => {
+        product.value = await api.getProductByHandle(route.params.handle);
+        if (!product.value.id) {
+          await router.push({ name: "not-found" });
+        }
+      });
+    });
 
     const productsRecommend = reactive([
       {
@@ -102,9 +108,11 @@ export default {
         collection: "Phone",
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-1.jpg",
-        },
+        images: [
+          {
+            url: "https://www.linkpicture.com/q/product-1.jpg",
+          },
+        ],
       },
       {
         id: 2,
@@ -114,9 +122,11 @@ export default {
         collection: "Phone",
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-2_3.jpg",
-        },
+        images: [
+          {
+            url: "https://www.linkpicture.com/q/product-2_3.jpg",
+          },
+        ],
       },
       {
         id: 3,
@@ -126,9 +136,11 @@ export default {
         collection: "Phone",
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-3_3.jpg",
-        },
+        images: [
+          {
+            url: "https://www.linkpicture.com/q/product-3_3.jpg",
+          },
+        ],
       },
       {
         id: 4,
@@ -138,9 +150,11 @@ export default {
         price: 999,
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-4_2.jpg",
-        },
+        images: [
+          {
+            url: "https://www.linkpicture.com/q/product-4_2.jpg",
+          },
+        ],
       },
       {
         id: 5,
@@ -150,26 +164,13 @@ export default {
         price: 999,
         description:
           "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        images: {
-          main_image: "https://www.linkpicture.com/q/product-5_1.jpg",
-        },
+        images: [
+          {
+            url: "https://www.linkpicture.com/q/product-5_1.jpg",
+          },
+        ],
       },
     ]);
-
-    const product = reactive({
-      id: 2,
-      handle: "product-2",
-      title: "Product A",
-      price: 999,
-      compare_price: 1000,
-      collection: "Phone",
-      description:
-        "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      images: {
-        main_image: "https://www.linkpicture.com/q/product-2_3.jpg",
-      },
-    });
-    const quantity = ref(1);
 
     const changeQuantity = debounce(function () {
       if (product.value.quantity !== quantity.value) {
